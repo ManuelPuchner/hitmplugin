@@ -1,10 +1,8 @@
 package at.hitm.hitmplugin.items;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,26 +10,25 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class TeleportSword implements Listener {
+public class Hyperion implements Listener {
 
     public ItemStack sword;
 
-    public TeleportSword() {
-        ItemStack itemStack = new ItemStack(Material.DIAMOND_SWORD, 1);
+    public Hyperion() {
+        ItemStack itemStack = new ItemStack(Material.IRON_SWORD, 1);
         ItemMeta meta = itemStack.getItemMeta();
         assert meta != null;
-        meta.setDisplayName(ChatColor.BLUE + "Teleport Sword");
-        meta.setCustomModelData(1021);
+        meta.setDisplayName(ChatColor.GOLD + "Hyperion");
+        meta.setCustomModelData(1031);
         List<String> lore = new ArrayList<>();
 
-        lore.add("Right click to teleport 5 blocks away!");
+        lore.add("Right click to teleport 5 blocks away and destroy everything in the way!");
 
         meta.setLore(lore);
         itemStack.setItemMeta(meta);
@@ -54,6 +51,16 @@ public class TeleportSword implements Listener {
             }
             Block block = e.getPlayer().getTargetBlock(null, 5);
             Location location = block.getLocation();
+            for (int x = -2; x <= 2; x += 2) {
+                for (int y = -2; y <= 2; y += 2) {
+                    Location loc = location.clone().add(x, 0.5D, y);
+                    location.getWorld().spawnParticle(Particle.EXPLOSION_LARGE, loc, 1);
+                }
+            }
+            location.getWorld().getNearbyEntities(location, 4, 3, 4).stream()
+                    .filter(entity -> entity instanceof LivingEntity)
+                    .filter(entity -> !(entity instanceof Player))
+                    .forEach(entity -> ((LivingEntity) entity).damage(30F));
             float pitch = player.getEyeLocation().getPitch();
             float yaw = player.getEyeLocation().getYaw();
             location.add(0, 1, 0);
