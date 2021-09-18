@@ -3,7 +3,6 @@ package at.hitm.hitmplugin.warps;
 import at.hitm.hitmplugin.Main;
 import com.google.common.io.Files;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

@@ -10,11 +10,11 @@ import at.hitm.hitmplugin.commands.DateCommand;
 import at.hitm.hitmplugin.commands.GetOnlinePlayersCommand;
 import at.hitm.hitmplugin.commands.GiveCustomItemsCommand;
 import at.hitm.hitmplugin.commands.GiveMoneyCommand;
+import at.hitm.hitmplugin.items.ItemManager;
 import at.hitm.hitmplugin.listeners.APIListener;
 import at.hitm.hitmplugin.listeners.JoinLeaveListener;
-import at.hitm.hitmplugin.utils.TPSRunnable;
-import at.hitm.hitmplugin.items.ItemManager;
 import at.hitm.hitmplugin.listeners.PlayerCraftListener;
+import at.hitm.hitmplugin.utils.TPSRunnable;
 import at.hitm.hitmplugin.utils.Utils;
 import at.hitm.hitmplugin.warps.WarpCommand;
 import at.hitm.hitmplugin.warps.WarpManager;
@@ -99,14 +99,16 @@ public final class Main extends JavaPlugin {
                 return Arrays.asList("create", "delete", "info");
             else if (args.length == 1)
                 return Utils.getElementsStartingWith(Arrays.asList("create", "delete", "info"), args[0].toLowerCase());
-            else if (args[0].equalsIgnoreCase("delete") || args[0].equalsIgnoreCase("info")) return Utils.getElementsStartingWith(new ArrayList<>(WarpManager.warps.keySet()), args[1].toLowerCase());
+            else if (args[0].equalsIgnoreCase("delete") || args[0].equalsIgnoreCase("info"))
+                return Utils.getElementsStartingWith(new ArrayList<>(WarpManager.warps.keySet()), args[1].toLowerCase());
             return Collections.singletonList("");
         });
         // used just to teleport to a specific warp
         PluginCommand warp = getCommand("warp");
         warp.setExecutor(new WarpCommand());
         warp.setTabCompleter((sender, command, alias, args) -> {
-            if (args.length <= 1) return Utils.getElementsStartingWith(new ArrayList<>(WarpManager.warps.keySet()), args[0].toLowerCase());
+            if (args.length <= 1)
+                return Utils.getElementsStartingWith(new ArrayList<>(WarpManager.warps.keySet()), args[0].toLowerCase());
             return null;
         });
     }
