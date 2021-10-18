@@ -19,6 +19,8 @@ import at.hitm.hitmplugin.utils.Utils;
 import at.hitm.hitmplugin.warps.WarpCommand;
 import at.hitm.hitmplugin.warps.WarpManager;
 import at.hitm.hitmplugin.warps.WarpsCommand;
+import at.matsecrafter.spawnplugin.executor.Enderchest;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -91,6 +93,7 @@ public final class Main extends JavaPlugin {
         getCommand("getOnlinePlayers").setExecutor(new GetOnlinePlayersCommand());
         getCommand("giveMoney").setExecutor(new GiveMoneyCommand());
         getCommand("givecustomitems").setExecutor(new GiveCustomItemsCommand());
+        getCommand("enderchest").setExecutor(new Enderchest());
         // used to setup warps
         PluginCommand warps = getCommand("warps");
         warps.setExecutor(new WarpsCommand());

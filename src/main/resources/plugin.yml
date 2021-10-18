@@ -23,3 +23,6 @@ commands:
   givecustomitems:
     description: Gives you all custom items
     permission: op
+  enderchest:
+    usage: /enderchest <Player>
+    aliases: [ec]
