@@ -24,5 +24,7 @@ commands:
     description: Gives you all custom items
     permission: op
   enderchest:
+    description: Opens the enderchest of an user via command
     usage: /enderchest <Player>
+    permission: op
     aliases: [ec]
