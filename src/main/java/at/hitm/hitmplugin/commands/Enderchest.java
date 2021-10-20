@@ -19,7 +19,7 @@ import at.hitm.hitmplugin.Main;
 
 public class Enderchest implements CommandExecutor{
 	
-	public static ArrayList<UUID> enderchest = new ArrayList();
+	public static ArrayList<UUID> enderchests = new ArrayList<>();
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -38,21 +38,21 @@ public class Enderchest implements CommandExecutor{
 								p.sendMessage("§4Dieser Spieler existiert nicht oder besitzt keine Enderchest auf dem HITM Server");
 							} else {
 								p.openInventory((offlineTarget).getEnderChest());
-								enderchest.contains(p.getUniqueId());
+								enderchests.contains(p.getUniqueId());
 							}
 							
 						} else {
 							p.openInventory(target.getEnderChest());
-							enderchest.contains(p.getUniqueId());
+							enderchests.contains(p.getUniqueId());
 						}
 					} else {
-						p.sendMessage(Main.noPerm);
+						p.sendMessage("§4 Du hast keine Berechtigungen für das!");
 					}
 				} else {
 					p.sendMessage("§fVerwende " + label + "§f<Spieler>");
 				}
 			} else {
-				p.sendMessage(Main.noPerm); 
+				p.sendMessage("§4 Du hast keine Berechtigungen für das!");
 			}
 		} else {
 			sender.sendMessage("§4Du musst ein Spieler sein um diesen command auszuführen");

@@ -19,7 +19,7 @@ import at.hitm.hitmplugin.utils.Utils;
 import at.hitm.hitmplugin.warps.WarpCommand;
 import at.hitm.hitmplugin.warps.WarpManager;
 import at.hitm.hitmplugin.warps.WarpsCommand;
-import at.matsecrafter.spawnplugin.executor.Enderchest;
+import at.hitm.hitmplugin.commands.Enderchest;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
